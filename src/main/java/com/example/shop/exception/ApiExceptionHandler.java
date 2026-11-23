@@ -34,4 +34,11 @@ public class ApiExceptionHandler {
         return ResponseEntity.badRequest()
                 .body(new ApiError(400, "Ошибка валидации", errors));
     }
+
+    //10.1
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiError> handleBadRequest(BadRequestException ex) {
+        return ResponseEntity.badRequest()
+                .body(new ApiError(400, ex.getMessage(), null));
+    }
 }
